@@ -1,0 +1,11 @@
+altgraph==0.17
+Babel==2.8.0
+defusedxml==0.6.0
+et-xmlfile==1.0.1
+jdcal==1.4.1
+openpyxl==3.0.4
+psutil==5.7.0
+PyInstaller==3.6
+pytz==2020.1
+tk==0.1.0
+tkfilebrowser==2.3.2
