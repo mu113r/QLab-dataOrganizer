@@ -17,7 +17,7 @@ def build_first_row(wb_in):
     ws_out.cell(row=1, column=2, value=ws_in.cell(row=1, column=1).value)
     ws_out.cell(row=1, column=3, value=ws_in.cell(row=1, column=2).value)
     ws_out.cell(row=1, column=4, value=ws_in.cell(row=1, column=3).value)
-    ws_in = wb_in['3D Cell Bodies']
+    ws_in = wb_in['3D Contour Summary - Cell Bodie']
     ws_out.cell(row=1, column=5, value=ws_in.cell(row=1, column=3).value)
     ws_out.cell(row=1, column=6, value=ws_in.cell(row=1, column=4).value)
     ws_in = wb_in['Neuron Summary']
@@ -56,7 +56,7 @@ def cbodies(wb_in, wb_out, current_row):
     
 def threedcbodies(wb_in, wb_out, current_row):
     ws_out = wb_out.active
-    ws_in = wb_in['3D Cell Bodies']
+    ws_in = wb_in['3D Contour Summary - Cell Bodie']
     ws_out.cell(row=current_row, column=5, value=ws_in.cell(row=2, column=3).value)
     ws_out.cell(row=current_row, column=6, value=ws_in.cell(row=2, column=4).value)
     return wb_out
