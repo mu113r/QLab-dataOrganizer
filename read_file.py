@@ -1,4 +1,5 @@
 import openpyxl as xl
+import statistics
 
 input_path = ""
 output_path = ""
@@ -20,8 +21,9 @@ def build_first_row(wb_in):
     ws_in = wb_in['3D Contour Summary - Cell Bodie']
     ws_out.cell(row=1, column=5, value=ws_in.cell(row=1, column=3).value)
     ws_out.cell(row=1, column=6, value=ws_in.cell(row=1, column=4).value)
+    ws_out.cell(row=1, column=7, value='n of 3D')
     ws_in = wb_in['Neuron Summary']
-    i = 7
+    i = 8
     for j in range(2, 5):
         for x in range(14, 22):
             ws_out.cell(row=1, column=i, value=(ws_in.cell(row=j, column=1).value + " " + ws_in.cell(row=1, column=x).value))
@@ -55,16 +57,29 @@ def cbodies(wb_in, wb_out, current_row):
     return wb_out
     
 def threedcbodies(wb_in, wb_out, current_row):
-    ws_out = wb_out.active
     ws_in = wb_in['3D Contour Summary - Cell Bodie']
-    ws_out.cell(row=current_row, column=5, value=ws_in.cell(row=2, column=3).value)
-    ws_out.cell(row=current_row, column=6, value=ws_in.cell(row=2, column=4).value)
+    ws_out = wb_out.active
+    colC = ws_in['C']
+    colD = ws_in['D']
+    listC = []
+    listD = []
+    for cel in range(1, len(colC)):
+        if (colC[cel].value != None) and (type(colC[cel].value) != type("")):
+            listC.append(float(colC[cel].value))
+    for cel in range(1, len(colD)):
+        if (colD[cel].value != None) and (type(colD[cel].value) != type("")):
+            listD.append(float(colD[cel].value))
+    ws_out.column_dimensions['E'].number_format = '#,##0.00'
+    ws_out.column_dimensions['F'].number_format = '#,##0.00'        
+    ws_out.cell(row=current_row, column=5, value=statistics.mean(listC))
+    ws_out.cell(row=current_row, column=6, value=statistics.mean(listD))
+    ws_out.cell(row=current_row, column=7, value=len(listC))
     return wb_out
     
 def nsummary(wb_in, wb_out, current_row):
     ws_out = wb_out.active
     ws_in = wb_in['Neuron Summary']
-    i = 7
+    i = 8
     for j in range(2, 5):
         for x in range(14, 22):
             ws_out.cell(row=current_row, column=i, value=ws_in.cell(row=j, column=x).value)
