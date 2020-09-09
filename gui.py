@@ -25,7 +25,7 @@ def remove_file_list():
 
 def execute():
     global files_list
-    rf.build_output(files_list)
+    rd.build_output(files_list)
     root.destroy()
     
 def executeP5():
