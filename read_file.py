@@ -12,13 +12,13 @@ def file_name(each_input, wb_out, current_row):
     return wb_out
     
 def build_first_row(wb_in):
-    ws_in = wb_in['Cell Bodies']
+    ws_in = wb_in['Cell Body Contours']
     wb_out = xl.Workbook()
     ws_out = wb_out.active
     ws_out.cell(row=1, column=2, value=ws_in.cell(row=1, column=1).value)
     ws_out.cell(row=1, column=3, value=ws_in.cell(row=1, column=2).value)
     ws_out.cell(row=1, column=4, value=ws_in.cell(row=1, column=3).value)
-    ws_in = wb_in['3D Contour Summary - Cell Bodie']
+    ws_in = wb_in['Cell Bodies Summary']
     ws_out.cell(row=1, column=5, value=ws_in.cell(row=1, column=3).value)
     ws_out.cell(row=1, column=6, value=ws_in.cell(row=1, column=4).value)
     ws_out.cell(row=1, column=7, value='n of 3D')
@@ -31,10 +31,10 @@ def build_first_row(wb_in):
     return wb_out
 
 def cbodies(wb_in, wb_out, current_row):
-    ws_in = wb_in['Cell Bodies']
-    colA = ws_in['A']
-    colB = ws_in['B']
-    colC = ws_in['C']
+    ws_in = wb_in['Cell Body Contours']
+    colA = ws_in['B']
+    colB = ws_in['C']
+    colC = ws_in['D']
     listA = []
     listB = []
     listC = []
@@ -57,7 +57,7 @@ def cbodies(wb_in, wb_out, current_row):
     return wb_out
     
 def threedcbodies(wb_in, wb_out, current_row):
-    ws_in = wb_in['3D Contour Summary - Cell Bodie']
+    ws_in = wb_in['Cell Bodies Summary']
     ws_out = wb_out.active
     colC = ws_in['C']
     colD = ws_in['D']

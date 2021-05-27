@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter.filedialog as fl
 import read_file as rd
 import p5 as p5
+import neuro_lu2 as neuro_lu2
 
 root = tk.Tk()
 root.title("Excel Manipulator")
@@ -33,6 +34,11 @@ def executeP5():
     p5.build_output(files_list)
     root.destroy()
 
+def execute2():
+    global files_list
+    neuro_lu2.build_output(files_list)
+    root.destroy()
+
 scroll = tk.Scrollbar(root)
 scroll.grid(row=0, column=2, sticky=tk.N+tk.S)
 e = tk.Listbox(root, bg="white", height=15, width=50, bd=3, yscrollcommand=scroll.set)
@@ -44,7 +50,9 @@ remove_files_button = tk.Button(root, text="remove file", width=15, command=remo
 remove_files_button.grid(row=0, column=0, sticky=tk.N, pady=34)
 execute_button = tk.Button(root, text="Neurolucida", width=15, command=execute)
 execute_button2 = tk.Button(root, text="Stereo Investigator", width=15, command=executeP5)
+execute_button3 = tk.Button(root, text="Neurolucida II", width=15, command=execute2)
 execute_button.grid(row=0, column=0, sticky=tk.S, pady=2)
-execute_button2.grid(row=0, column=0, sticky=tk.S, pady=34)
+execute_button2.grid(row=0, column=0, sticky=tk.S, pady=66)
+execute_button3.grid(row=0, column=0, sticky=tk.S, pady=34)
 root.mainloop()
 
